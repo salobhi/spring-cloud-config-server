@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-service
+  namespace: tpg
+  labels:
+    app: config-service
+    group: general
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-service
+  template:
+    metadata:
+      labels:
+        app: config-service
+        group: general
+        version: v1
+    spec:
+      containers:
+        - name: config-service
+          image: config-service:latest
+          imagePullPolicy: IfNotPresent
+      terminationGracePeriodSeconds: 60
